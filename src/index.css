@@ -1,0 +1,94 @@
+/* variables globales de diseño y sistema de color (regla 60-30-10) */
+:root {
+  --fondo_principal: #080c14;       /* 60%: fondo general profundo de la aplicacion */
+  --fondo_secundario: #0f1422;     /* 30%: fondo para secciones y tarjetas */
+  --fondo_tarjeta_interna: #171e30; /* fondo para elementos de contraste interno */
+  --texto_principal: #f9fafb;      /* texto de alta legibilidad (blanco suave) */
+  --texto_atenuado: #9ca3af;       /* texto secundario para parrafos y descripciones */
+  --color_acento: #ff6b00;         /* Naranja vibrante premium */
+  --color_acento_efecto: #e05e00;  /* Naranja oscuro para el efecto hover al pasar el ratón */
+  --color_exito: #00e676;          /* color para confirmaciones y checks positivos */
+  
+  --fuente_sistema: 'Inter', system-ui, -apple-system, sans-serif;
+  --radio_borde_suave: 16px;
+  --transicion_limpia: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* reinicio de estilos base para consistencia entre navegadores */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* configuracion general del cuerpo de la pagina web */
+body {
+  background-color: var(--fondo_principal);
+  color: var(--texto_principal);
+  font-family: var(--fuente_sistema);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* contenedor fluido optimizado bajo la filosofia mobile first */
+.contenedor_fluido {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1.25rem;
+  padding-left: 1.25rem;
+}
+
+/* titulos de seccion semanticos con linea indicadora de acento */
+.titulo_seccion_principal {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+/* linea decorativa inferior para el titulo de la seccion */
+.titulo_seccion_principal::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 4px;
+  background-color: var(--color_acento);
+  border-radius: 2px;
+  margin-top: 0.5rem;
+}
+
+/* media query para pantallas de tabletas y entornos medianos (768px) */
+@media (min-width: 768px) {
+  .contenedor_fluido {
+    max-width: 720px;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+  
+  .titulo_seccion_principal {
+    font-size: 2.25rem;
+  }
+}
+
+/* media query para laptops, computadoras de escritorio y pantallas grandes (1024px) */
+@media (min-width: 1024px) {
+  .contenedor_fluido {
+    max-width: 1050px;
+  }
+}
+
+/* ==========================================================================
+   CONTROL GLOBAL DE ENLACES (Quitar subrayados y colores del navegador)
+   ========================================================================== */
+a, a:visited {
+  text-decoration: none !important; /* Quita el subrayado por defecto de todos los estados */
+  color: inherit;                  /* Obliga a heredar el color blanco o naranja asignado en React */
+}
+
+/* Efecto visual limpio y opcional: cambia ligeramente el color al pasar el ratón */
+a:hover {
+  text-decoration: none !important; /* Asegura que tampoco se subraye al hacer hover */
+  opacity: 0.85;                    /* Efecto visual sutil al pasar el cursor */
+}
