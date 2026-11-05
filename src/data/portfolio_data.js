@@ -1,50 +1,154 @@
-// datos del plan comercial estrategico para la venta de landing pages
-export const plan_landing_page_medio = {
-  nombre_servicio: "Plan Landing Page Medio",
-  precio_servicio: 400,
-  moneda_servicio: "EUR",
-  duracion_dominio: "1 año",
-  proveedor_despliegue: "Vercel & GitHub",
-  caracteristicas_incluidas: [
-    "Diseño web exclusivo y personalizado",
-    "Estudio y optimización de paleta de colores (Branding)",
-    "Dominio personalizado .com gratuito por el primer año",
-    "Despliegue de alta disponibilidad e inmune a caídas",
-    "Formulario de contacto o botón de WhatsApp integrado",
-    "Optimización SEO básica para indexación en Google"
-  ]
-};
-//Segundo plan
-export const plan_landing_page_basico = {
-  nombre_servicio: "Plan Landing Page Inicial",
-  precio_servicio: 200,
-  moneda_servicio: "EUR",
-  duracion_dominio: "1 año",
-  proveedor_despliegue: "Vercel & GitHub",
-  caracteristicas_incluidas: [
-    "Diseño basado en plantilla preconfigurada (1 Sección Home)",
-    "Dominio personalizado .com gratuito por el primer año",
-    "Despliegue de alta disponibilidad e inmune a caídas",
-    "Optimización SEO básica para indexación en Google"
-  ]
-};
-// Tercer plan profecional
-export const plan_landing_page_profecional = {
-  nombre_servicio: "Plan Landing Page Pro",
-  precio_servicio: 1400,
-  moneda_servicio: "EUR",
-  duracion_dominio: "1 año",
-  proveedor_despliegue: "Vercel & GitHub",
-  caracteristicas_incluidas: [
-    "Web Corporativa Multi-página completa (hasta 5 secciones)",
-    "Diseño web exclusivo y 100% a medida",
-    "Dominio personalizado .com gratuito por el primer año",
-    "Despliegue de alta disponibilidad e inmune a caídas",
-    "Integración de WooCommerce / Tienda Online (Solo con Plantilla WordPress)",
-    "Asesoría personalizada en estrategia digital y marketing",
-    "Optimización SEO básica para indexación en Google"
-  ]
-};
+// webs de ejemplo por sector para el portafolio
+// cada captura se dibuja con css a partir de la clase del sector
+export const trabajos_portafolio = [
+  {
+    id_trabajo: "trabajo_resto",
+    clase_sector: "work--resto",
+    sector: "Restaurante",
+    nombre_negocio: "Trattoria Lume",
+    dominio_ejemplo: "trattoria-lume.es",
+    titular_captura: ["Cocina casera", "desde 1998"],
+    boton_captura: "Reservar mesa",
+    frase_resultado: "Carta digital y reservas online para llenar mesas entre semana sin depender del teléfono.",
+    enlace_demo: null
+  },
+  {
+    id_trabajo: "trabajo_carne",
+    clase_sector: "work--carne",
+    sector: "Carnicería",
+    nombre_negocio: "Carnicería El Roble",
+    dominio_ejemplo: "carniceria-elroble.es",
+    titular_captura: ["Carne de calidad,", "de aquí"],
+    boton_captura: "Haz tu pedido",
+    frase_resultado: "Pedidos por WhatsApp con un clic y ofertas de la semana visibles desde el móvil.",
+    enlace_demo: null
+  },
+  {
+    id_trabajo: "trabajo_pelu",
+    clase_sector: "work--pelu",
+    sector: "Peluquería",
+    nombre_negocio: "Estudio Malva",
+    dominio_ejemplo: "estudio-malva.es",
+    titular_captura: ["Tu mejor versión,", "sin esperas"],
+    boton_captura: "Pedir cita",
+    frase_resultado: "Cita online, precios claros y galería de trabajos para que nuevas clientas se animen a reservar.",
+    enlace_demo: null
+  },
+  {
+    id_trabajo: "trabajo_reformas",
+    clase_sector: "work--reformas",
+    sector: "Reformas",
+    nombre_negocio: "Reformas Norte",
+    dominio_ejemplo: "reformas-norte.es",
+    titular_captura: ["Reformas sin", "sorpresas"],
+    boton_captura: "Pide presupuesto",
+    frase_resultado: "Fotos de antes y después y un formulario de presupuesto que filtra los encargos serios.",
+    enlace_demo: null
+  }
+];
+
+// pasos del proceso de trabajo
+export const pasos_proceso = [
+  {
+    titulo_paso: "Me cuentas tu negocio",
+    texto_paso: "Me escribes por WhatsApp o por el formulario y hablamos de qué necesitas y a quién quieres llegar."
+  },
+  {
+    titulo_paso: "Diseño y presupuesto",
+    texto_paso: "Te propongo un diseño y un presupuesto cerrado. Sin costes ocultos."
+  },
+  {
+    titulo_paso: "Construcción y revisión",
+    texto_paso: "Construyo tu web y la revisamos juntos hasta que quede como quieres."
+  },
+  {
+    titulo_paso: "Publicación y formación",
+    texto_paso: "La publico con tu dominio y te enseño a usarla y a cambiar lo básico."
+  }
+];
+
+// planes comerciales de diseño web
+// la cuota anual incluye dominio, alojamiento y un numero de cambios pequeños al año
+export const planes_precios = [
+  {
+    id_plan: "plan_basica",
+    nombre_plan: "Básica",
+    descripcion_plan: "Para empezar a tener presencia en internet.",
+    precio_plan: 200,
+    nota_impuestos: "Impuestos no incluidos",
+    cuota_anual: 60,
+    cambios_incluidos: 3,
+    destacado: false,
+    caracteristicas_incluidas: [
+      "Web de una página a partir de una plantilla adaptada",
+      "Dominio .com incluido el primer año",
+      "Formulario o botón de WhatsApp",
+      "Adaptada a móvil",
+      "SEO básico para aparecer en Google"
+    ]
+  },
+  {
+    id_plan: "plan_recomendada",
+    nombre_plan: "Recomendada",
+    descripcion_plan: "La opción más elegida por negocios locales.",
+    precio_plan: 400,
+    nota_impuestos: "Impuestos no incluidos",
+    cuota_anual: 90,
+    cambios_incluidos: 6,
+    destacado: true,
+    caracteristicas_incluidas: [
+      "Diseño a medida de una página",
+      "Colores y estilo adaptados a tu marca",
+      "Dominio .com incluido el primer año",
+      "Formulario de contacto y botón de WhatsApp",
+      "SEO básico y alta en Perfil de Empresa de Google",
+      "Alojamiento rápido y certificado SSL"
+    ]
+  },
+  {
+    id_plan: "plan_profesional",
+    nombre_plan: "Profesional",
+    descripcion_plan: "Para negocios que quieren crecer en internet.",
+    precio_plan: 1200,
+    nota_impuestos: "Impuestos no incluidos",
+    cuota_anual: 150,
+    cambios_incluidos: 12,
+    destacado: false,
+    caracteristicas_incluidas: [
+      "Web completa de hasta 5 páginas",
+      "Diseño 100 % a medida",
+      "Dominio .com incluido el primer año",
+      "Catálogo, carta o galería de trabajos",
+      "SEO local para tu zona",
+      "Asesoría de estrategia digital"
+    ]
+  }
+];
+
+// opiniones de clientes reales: la seccion solo se muestra si hay alguna
+// formato: { id_testimonio, texto_testimonio, nombre_cliente, negocio_cliente, iniciales, color_avatar }
+export const testimonios_clientes = [];
+
+// preguntas frecuentes de la portada
+export const preguntas_frecuentes = [
+  {
+    pregunta: "¿Cuánto tardas en tener lista mi web?",
+    respuesta: "Una web de una página está lista en unos 7 días desde que tengo tus textos y fotos. Las webs de varias páginas suelen tardar entre 2 y 3 semanas."
+  },
+  {
+    pregunta: "¿Qué necesito darte?",
+    respuesta: "Tu logo si lo tienes, algunas fotos de tu negocio y la información básica: qué ofreces, horarios y cómo contactarte. Si no tienes textos, te ayudo a escribirlos."
+  },
+  {
+    pregunta: "¿Puedo editar la web yo mismo?",
+    respuesta: "Sí. Te enseño a cambiar lo básico, como textos, precios u horarios. Para cambios más grandes, puedes contar conmigo."
+  },
+  {
+    pregunta: "¿Qué pasa después de publicarla?",
+    respuesta: "A partir del segundo año pagas una cuota anual que incluye el dominio, el alojamiento y varios cambios pequeños según tu plan. Los cambios grandes, como secciones nuevas o rediseños, se presupuestan aparte."
+  }
+];
+
 // listado de videos educativos del canal de youtube para la academia de desarrollo
 export const videos_formacion_youtube = [
   {

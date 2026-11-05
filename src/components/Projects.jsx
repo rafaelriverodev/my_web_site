@@ -1,111 +1,54 @@
-// componente modular para la visualizacion del portafolio de proyectos de software reales
+// componente de portafolio con webs de ejemplo para distintos sectores locales
 import React from 'react';
+import { trabajos_portafolio } from '../data/portfolio_data.js';
 
 export const Projects = () => {
-  // listado estatico local actualizado con tus proyectos reales de rafaelriverodev.com
-  const listado_proyectos_desarrollo = [
-    {
-      id_proyecto: "proy_001",
-      titulo_proyecto: "Sistema de Trazabilidad Industrial",
-      descripcion_proyecto: "Software especializado para el seguimiento y control de activos o productos a lo largo de cadenas de suministro, optimizando la auditoría de procesos críticos.",
-      tecnologias_proyecto: ["Python", "MongoDB", "React", "Arquitectura Limpia"],
-      enlace_github: "https://github.com/rafaelriverodev",
-      enlace_despliegue: "https://trazabilidad-profecional.web.app/"
-    },
-    {
-      id_proyecto: "proy_002",
-      titulo_proyecto: "CineFilter - Plataforma de Recomendación de Películas",
-      descripcion_proyecto: "Una plataforma para buscar películas",
-      tecnologias_proyecto: ["JavaScript", "CSS", "HTML"],
-      enlace_github: "https://github.com/rafaelriverodev",
-      enlace_despliegue: "https://proyecto-cine-filter.vercel.app/"
-    }
-  ];
-
   return (
-    <section id="projects" style={{ 
-      padding: '4rem 0', 
-      backgroundColor: 'var(--fondo_secundario)' 
-    }}>
-      <div className="contenedor_fluido">
-        
-        <h2 className="titulo_seccion_principal">Proyectos Destacados</h2>
-        
-        <p style={{ color: 'var(--texto_atenuado)', marginBottom: '2.5rem', fontSize: '1.05rem' }}>
-          Soluciones digitales reales y software de nivel empresarial desplegados con éxito.
+    <section className="section section--alt" id="portafolio">
+      <div className="container">
+        <span className="eyebrow">Trabajos</span>
+        <h2 className="section-title">Webs pensadas para cada negocio</h2>
+        <p className="section-lead">
+          Ejemplos de webs para sectores locales. Cada una está diseñada para que el cliente reserve,
+          llame o pida presupuesto en pocos segundos.
         </p>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))',
-          gap: '2rem'
-        }}>
-          {listado_proyectos_desarrollo.map((item_proyecto) => (
-            <div key={item_proyecto.id_proyecto} style={{
-              backgroundColor: 'var(--fondo_principal)',
-              borderRadius: 'var(--radio_borde_suave)',
-              padding: '1.75rem',
-              border: '1px solid rgba(255, 255, 255, 0.03)',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)'
-            }}>
-              
-              <div>
-                <h3 style={{ fontSize: '1.25rem', fontWeight: '700', marginBottom: '0.75rem', color: 'var(--texto_principal)' }}>
-                  {item_proyecto.titulo_proyecto}
-                </h3>
-                
-                <p style={{ fontSize: '0.9rem', color: 'var(--texto_atenuado)', marginBottom: '1.5rem', lineHeight: '1.5' }}>
-                  {item_proyecto.descripcion_proyecto}
-                </p>
-                
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '2rem' }}>
-                  {item_proyecto.tecnologias_proyecto.map((tag_tecnologia, indice_tag) => (
-                    <span key={indice_tag} style={{
-                      fontSize: '0.75rem',
-                      fontWeight: '600',
-                      backgroundColor: 'var(--fondo_secundario)',
-                      color: 'var(--color_acento)',
-                      padding: '0.3rem 0.75rem',
-                      borderRadius: '6px'
-                    }}>
-                      {tag_tecnologia}
-                    </span>
-                  ))}
+        <div className="portfolio-grid">
+          {trabajos_portafolio.map((item_trabajo) => (
+            <article key={item_trabajo.id_trabajo} className={`work ${item_trabajo.clase_sector} reveal`}>
+
+              {/* captura de ejemplo de la web dibujada con css */}
+              <div className="shot" aria-hidden="true">
+                <div className="shot-bar"><i></i><i></i><i></i><span>{item_trabajo.dominio_ejemplo}</span></div>
+                <div className="shot-body">
+                  <div className="shot-nav"><b>{item_trabajo.nombre_negocio}</b><s></s><s></s><s></s></div>
+                  <div className="shot-hero">
+                    <div>
+                      <p className="shot-h">
+                        {item_trabajo.titular_captura[0]}<br />{item_trabajo.titular_captura[1]}
+                      </p>
+                      <span className="shot-btn">{item_trabajo.boton_captura}</span>
+                    </div>
+                    <div className="shot-img"></div>
+                  </div>
+                  <div className="shot-row"><span></span><span></span><span></span></div>
                 </div>
               </div>
 
-              <div style={{ 
-                display: 'flex', 
-                gap: '1rem',
-                borderTop: '1px solid rgba(255, 255, 255, 0.05)',
-                paddingTop: '1.25rem'
-              }}>
-                <a 
-                  href={item_proyecto.enlace_github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ fontSize: '0.9rem', fontWeight: '600', color: 'var(--texto_principal)' }}
-                >
-                  GitHub →
-                </a>
-                
-                <a 
-                  href={item_proyecto.enlace_despliegue}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ fontSize: '0.9rem', fontWeight: '600', color: 'var(--color_acento)' }}
-                >
-                  Sitio Web
-                </a>
+              <div className="work-info">
+                <span className="work-sector">{item_trabajo.sector}</span>
+                <h3>{item_trabajo.nombre_negocio}</h3>
+                <p>{item_trabajo.frase_resultado}</p>
+                {item_trabajo.enlace_demo && (
+                  <a href={item_trabajo.enlace_demo} className="work-link" target="_blank" rel="noopener noreferrer">
+                    Ver demo →
+                  </a>
+                )}
               </div>
 
-            </div>
+            </article>
           ))}
         </div>
-        
       </div>
     </section>
   );

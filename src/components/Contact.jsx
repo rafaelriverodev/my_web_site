@@ -1,5 +1,6 @@
 // componente modular para la gestion de contactos y solicitudes de servicios reales
 import React, { useState } from 'react';
+import { datos_contacto, enlace_whatsapp, paginas_legales_publicadas } from '../data/site_data.js';
 
 export const Contact = () => {
   // estado global para capturar los datos del formulario de forma controlada
@@ -7,7 +8,8 @@ export const Contact = () => {
     nombre_usuario: '',
     correo_usuario: '',
     motivo_consulta: '',
-    mensaje_usuario: ''
+    mensaje_usuario: '',
+    acepta_privacidad: false
   });
 
   // estado para gestionar las alertas y el flujo visual de la aplicacion
@@ -19,28 +21,39 @@ export const Contact = () => {
 
   // manejador encargado de capturar los cambios en los inputs de forma reactiva
   const manejar_cambio_input = (evento) => {
-    const { name, value } = evento.target;
-    
+    const { name, value, type, checked } = evento.target;
+
     establecer_datos_formulario({
       ...datos_formulario,
-      [name]: value
+      [name]: type === 'checkbox' ? checked : value
     });
   };
 
   // procesador de envios blindado contra ejecuciones duplicadas y conectado a la API de EmailJS
   const procesar_envio_formulario = async (evento) => {
     evento.preventDefault();
-    
+
     // validacion estricta en el cliente para asegurar el motivo de consulta (whitelist)
     const motivos_validos = ['informacion_plan', 'servicio_tecnico', 'otro_motivo'];
-    
+
     if (!motivos_validos.includes(datos_formulario.motivo_consulta)) {
       establecer_estado_envio({
         procesando: false,
         exito: false,
         error_sistema: 'Por favor, selecciona un motivo de consulta válido de la lista.'
       });
-      
+
+      return;
+    }
+
+    // el consentimiento de privacidad es obligatorio por rgpd
+    if (!datos_formulario.acepta_privacidad) {
+      establecer_estado_envio({
+        procesando: false,
+        exito: false,
+        error_sistema: 'Debes aceptar la política de privacidad para enviar el mensaje.'
+      });
+
       return;
     }
 
@@ -60,7 +73,6 @@ export const Contact = () => {
     };
 
     try {
-      // peticion HTTP asincrona bajo protocolo seguro TLS 1.3
       const respuesta = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
         headers: {
@@ -81,161 +93,143 @@ export const Contact = () => {
           nombre_usuario: '',
           correo_usuario: '',
           motivo_consulta: '',
-          mensaje_usuario: ''
+          mensaje_usuario: '',
+          acepta_privacidad: false
         });
-        
+
       } else {
         const texto_error = await respuesta.text();
-        
+
         throw new Error(texto_error || 'Fallo en la pasarela de EmailJS');
       }
 
     } catch (error) {
       console.error('Error de auditoria en envio de correo:', error);
-      
+
       establecer_estado_envio({
         procesando: false,
         exito: false,
-        error_sistema: 'No se pudo procesar tu solicitud en este momento. Inténtalo de nuevo más tarde.'
+        error_sistema: 'No se pudo procesar tu solicitud en este momento. Inténtalo de nuevo o escríbeme por WhatsApp.'
       });
     }
   };
 
   return (
-    <section id="contact" style={{ padding: '4rem 0', backgroundColor: 'var(--fondo_principal)' }}>
-      <div className="contenedor_fluido">
-        
-        <h2 className="titulo_seccion_principal">Contacto</h2>
-        
-        <p style={{ color: 'var(--texto_atenuado)', marginBottom: '2.5rem', fontSize: '1.05rem' }}>
-          ¿Listo para impulsar tu proyecto? Cuéntame qué necesitas y nos pondremos en marcha.
-        </p>
+    <section className="section" id="contacto">
+      <div className="container contact">
 
-        <div style={{
-          backgroundColor: 'var(--fondo_secundario)',
-          padding: '2.5rem',
-          borderRadius: 'var(--radio_borde_suave)',
-          border: '1px solid rgba(255, 255, 255, 0.03)',
-          maxWidth: '650px',
-          margin: '0 auto',
-          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)'
-        }}>
-
-          <form onSubmit={procesar_envio_formulario}>
-            
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label htmlFor="nombre_usuario" style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: '600' }}>
-                Nombre Completo
-              </label>
-              
-              <input
-                type="text"
-                id="nombre_usuario"
-                name="nombre_usuario"
-                required
-                disabled={estado_envio.procesando}
-                value={datos_formulario.nombre_usuario}
-                onChange={manejar_cambio_input}
-                style={{
-                  width: '100%', padding: '0.85rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.1)',
-                  backgroundColor: 'var(--fondo_tarjeta_interna)', color: 'var(--texto_principal)', fontSize: '1rem'
-                }}
-              />
-            </div>
-
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label htmlFor="correo_usuario" style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: '600' }}>
-                Correo Electrónico
-              </label>
-              
-              <input
-                type="email"
-                id="correo_usuario"
-                name="correo_usuario"
-                required
-                disabled={estado_envio.procesando}
-                value={datos_formulario.correo_usuario}
-                onChange={manejar_cambio_input}
-                style={{
-                  width: '100%', padding: '0.85rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.1)',
-                  backgroundColor: 'var(--fondo_tarjeta_interna)', color: 'var(--texto_principal)', fontSize: '1rem'
-                }}
-              />
-            </div>
-
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label htmlFor="motivo_consulta" style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: '600' }}>
-                ¿En qué puedo ayudarte?
-              </label>
-              
-              <select
-                id="motivo_consulta"
-                name="motivo_consulta"
-                required
-                disabled={estado_envio.procesando}
-                value={datos_formulario.motivo_consulta}
-                onChange={manejar_cambio_input}
-                style={{
-                  width: '100%', padding: '0.85rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.1)',
-                  backgroundColor: 'var(--fondo_tarjeta_interna)', color: 'var(--texto_principal)', fontSize: '1rem',
-                  cursor: 'pointer'
-                }}
-              >
-                <option value="" disabled hidden>Selecciona una opción...</option>
-                <option value="informacion_plan">Información sobre un Plan Web</option>
-                <option value="servicio_tecnico">Solicitar un Servicio Técnico</option>
-                <option value="otro_motivo">Otro tipo de consulta</option>
-              </select>
-            </div>
-
-            <div style={{ marginBottom: '2rem' }}>
-              <label htmlFor="mensaje_usuario" style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: '600' }}>
-                Tu Mensaje
-              </label>
-              
-              <textarea
-                id="mensaje_usuario"
-                name="mensaje_usuario"
-                required
-                rows="5"
-                disabled={estado_envio.procesando}
-                value={datos_formulario.mensaje_usuario}
-                onChange={manejar_cambio_input}
-                style={{
-                  width: '100%', padding: '0.85rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.1)',
-                  backgroundColor: 'var(--fondo_tarjeta_interna)', color: 'var(--texto_principal)', fontSize: '1rem', resize: 'vertical'
-                }}
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={estado_envio.procesando}
-              style={{
-                width: '100%', padding: '1rem', borderRadius: '8px', backgroundColor: 'var(--color_acento)',
-                color: '#080c14', fontWeight: '700', fontSize: '1rem', border: 'none', cursor: estado_envio.procesando ? 'not-allowed' : 'pointer',
-                textTransform: 'uppercase', letterSpacing: '0.05em', opacity: estado_envio.procesando ? 0.7 : 1,
-                transition: 'var(--transicion_limpia)'
-              }}
-            >
-              {estado_envio.procesando ? 'Transmitiendo solicitud...' : 'Enviar Mensaje'}
-            </button>
-
-            {estado_envio.exito && (
-              <div style={{ marginTop: '1.5rem', color: 'var(--color_exito)', fontSize: '0.95rem', fontWeight: '600', textAlign: 'center' }}>
-                ✓ ¡Mensaje enviado con éxito! Recibirás una respuesta en tu bandeja de entrada en menos de 24 horas.
-              </div>
-            )}
-
-            {estado_envio.error_sistema && (
-              <div style={{ marginTop: '1.5rem', color: '#ff3333', fontSize: '0.95rem', fontWeight: '600', textAlign: 'center' }}>
-                ⚠ {estado_envio.error_sistema}
-              </div>
-            )}
-
-          </form>
-
+        <div className="reveal">
+          <span className="eyebrow">Contacto</span>
+          <h2 className="section-title">Cuéntame tu proyecto</h2>
+          <p className="section-lead">
+            Te respondo en menos de 24 horas laborables con una propuesta y un presupuesto cerrado.
+          </p>
+          <div className="contact-direct">
+            <a href={enlace_whatsapp} className="btn btn--primary" target="_blank" rel="noopener noreferrer">
+              Escríbeme por WhatsApp
+            </a>
+            <a href={`tel:${datos_contacto.telefono_enlace}`} className="btn btn--ghost">
+              Llamar al {datos_contacto.telefono_visible}
+            </a>
+          </div>
         </div>
+
+        <form className="form reveal" onSubmit={procesar_envio_formulario}>
+          <div className="field">
+            <label htmlFor="nombre_usuario">Nombre</label>
+            <input
+              type="text"
+              id="nombre_usuario"
+              name="nombre_usuario"
+              autoComplete="name"
+              required
+              disabled={estado_envio.procesando}
+              value={datos_formulario.nombre_usuario}
+              onChange={manejar_cambio_input}
+            />
+          </div>
+
+          <div className="field">
+            <label htmlFor="correo_usuario">Email</label>
+            <input
+              type="email"
+              id="correo_usuario"
+              name="correo_usuario"
+              autoComplete="email"
+              required
+              disabled={estado_envio.procesando}
+              value={datos_formulario.correo_usuario}
+              onChange={manejar_cambio_input}
+            />
+          </div>
+
+          <div className="field">
+            <label htmlFor="motivo_consulta">¿En qué puedo ayudarte?</label>
+            <select
+              id="motivo_consulta"
+              name="motivo_consulta"
+              required
+              disabled={estado_envio.procesando}
+              value={datos_formulario.motivo_consulta}
+              onChange={manejar_cambio_input}
+            >
+              <option value="" disabled hidden>Selecciona una opción</option>
+              <option value="informacion_plan">Información sobre un plan web</option>
+              <option value="servicio_tecnico">Solicitar un servicio técnico</option>
+              <option value="otro_motivo">Otro tipo de consulta</option>
+            </select>
+          </div>
+
+          <div className="field">
+            <label htmlFor="mensaje_usuario">Cuéntame qué necesitas</label>
+            <textarea
+              id="mensaje_usuario"
+              name="mensaje_usuario"
+              required
+              rows="5"
+              disabled={estado_envio.procesando}
+              value={datos_formulario.mensaje_usuario}
+              onChange={manejar_cambio_input}
+            />
+          </div>
+
+          <label className="consent">
+            <input
+              type="checkbox"
+              name="acepta_privacidad"
+              required
+              disabled={estado_envio.procesando}
+              checked={datos_formulario.acepta_privacidad}
+              onChange={manejar_cambio_input}
+            />
+            <span>
+              He leído y acepto la{' '}
+              {paginas_legales_publicadas ? (
+                <a href="/politica-privacidad.html" target="_blank" rel="noopener noreferrer">política de privacidad</a>
+              ) : (
+                'política de privacidad'
+              )}.
+              Tus datos solo se usarán para
+              responder a tu consulta.
+            </span>
+          </label>
+
+          <button type="submit" className="btn btn--primary btn--block" disabled={estado_envio.procesando}>
+            {estado_envio.procesando ? 'Enviando...' : 'Enviar mensaje'}
+          </button>
+
+          {estado_envio.exito && (
+            <p className="form-message form-message--ok" role="status">
+              ✓ ¡Mensaje enviado! Te responderé en menos de 24 horas laborables.
+            </p>
+          )}
+
+          {estado_envio.error_sistema && (
+            <p className="form-message form-message--error" role="alert">
+              {estado_envio.error_sistema}
+            </p>
+          )}
+        </form>
 
       </div>
     </section>
