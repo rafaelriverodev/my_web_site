@@ -218,6 +218,12 @@ section { scroll-margin-top: var(--header-h); }
   align-self: flex-start; font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
   padding: 4px 10px; border-radius: 999px; background: rgba(255, 255, 255, .7); color: var(--ink);
 }
+.work-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.work-tags .work-sector { align-self: auto; }
+.work-demo {
+  font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 999px; border: 1px dashed currentColor; color: var(--card-ink);
+}
 .work h3 { font-size: 1.4rem; font-weight: 800; color: var(--card-ink); }
 .work-info p { color: var(--card-ink); opacity: .85; }
 .work-link {
@@ -242,6 +248,15 @@ section { scroll-margin-top: var(--header-h); }
 .shot-img::after { content: ''; position: absolute; inset: auto -20% -30% 30%; height: 70%; border-radius: 50%; background: rgba(255, 255, 255, .18); }
 .shot-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4%; height: 18%; }
 .shot-row span { border-radius: 6px; background: currentColor; opacity: .12; }
+
+/* captura real de una demo */
+.shot-photo { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+
+.work--barberia { --card-bg: #efe2c8; --card-ink: #2a1e0c; }
+.work--tatuajes { --card-bg: #e2f2a6; --card-ink: #161616; }
+
+/* texto solo para lectores de pantalla */
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 .work--resto { --card-bg: #f6e3cf; --card-ink: #3a1d0e; --s-bg: #fff8ef; --s-ink: #3a1d0e; --s-accent: #b4441b; --s-btn-ink: #fff; --s-img: linear-gradient(135deg, #e08a3c, #8c2f12); }
 .work--carne { --card-bg: #f4d5d5; --card-ink: #3d0b10; --s-bg: #2a0a0e; --s-ink: #fbe9e9; --s-accent: #e8b44c; --s-btn-ink: #2a0a0e; --s-img: linear-gradient(135deg, #c0392b, #5c0f17); }

@@ -17,7 +17,22 @@ export const Projects = () => {
           {trabajos_portafolio.map((item_trabajo) => (
             <article key={item_trabajo.id_trabajo} className={`work ${item_trabajo.clase_sector} reveal`}>
 
-              {/* captura de ejemplo de la web dibujada con css */}
+              {item_trabajo.imagen_captura ? (
+                /* captura real de la portada de la demo */
+                <div className="shot">
+                  <div className="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>{item_trabajo.dominio_ejemplo}</span></div>
+                  <img
+                    className="shot-photo"
+                    src={item_trabajo.imagen_captura}
+                    alt={`Portada de la web de demostración de ${item_trabajo.nombre_negocio}`}
+                    width="960"
+                    height="600"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ) : (
+              /* captura de ejemplo de la web dibujada con css */
               <div className="shot" aria-hidden="true">
                 <div className="shot-bar"><i></i><i></i><i></i><span>{item_trabajo.dominio_ejemplo}</span></div>
                 <div className="shot-body">
@@ -34,14 +49,18 @@ export const Projects = () => {
                   <div className="shot-row"><span></span><span></span><span></span></div>
                 </div>
               </div>
+              )}
 
               <div className="work-info">
-                <span className="work-sector">{item_trabajo.sector}</span>
+                <div className="work-tags">
+                  <span className="work-sector">{item_trabajo.sector}</span>
+                  {item_trabajo.es_demo && <span className="work-demo">Web de demostración</span>}
+                </div>
                 <h3>{item_trabajo.nombre_negocio}</h3>
                 <p>{item_trabajo.frase_resultado}</p>
                 {item_trabajo.enlace_demo && (
                   <a href={item_trabajo.enlace_demo} className="work-link" target="_blank" rel="noopener noreferrer">
-                    Ver demo →
+                    Ver demo →<span className="visually-hidden"> (se abre en una pestaña nueva)</span>
                   </a>
                 )}
               </div>

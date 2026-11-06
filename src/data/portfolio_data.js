@@ -1,6 +1,29 @@
 // webs de ejemplo por sector para el portafolio
 // cada captura se dibuja con css a partir de la clase del sector
+// si un trabajo tiene imagen_captura se muestra la captura real en lugar del dibujo css
 export const trabajos_portafolio = [
+  {
+    id_trabajo: "trabajo_barberia",
+    clase_sector: "work--barberia",
+    sector: "Barbería",
+    nombre_negocio: "Barbería El Filo",
+    dominio_ejemplo: "demo-barberia-jade.vercel.app",
+    imagen_captura: "/img/demo_barberia.webp",
+    es_demo: true,
+    frase_resultado: "Web para barbería con reserva de cita por WhatsApp, servicios y galería.",
+    enlace_demo: "https://demo-barberia-jade.vercel.app"
+  },
+  {
+    id_trabajo: "trabajo_tatuajes",
+    clase_sector: "work--tatuajes",
+    sector: "Estudio de tatuajes",
+    nombre_negocio: "Tinta Negra Studio",
+    dominio_ejemplo: "demo-tatuajes-two.vercel.app",
+    imagen_captura: "/img/demo_tatuajes.webp",
+    es_demo: true,
+    frase_resultado: "Web para estudio de tatuajes con galería por estilos, artistas y cita por WhatsApp.",
+    enlace_demo: "https://demo-tatuajes-two.vercel.app"
+  },
   {
     id_trabajo: "trabajo_resto",
     clase_sector: "work--resto",
