@@ -19,6 +19,7 @@ export const Navbar = () => {
     <header className="header">
       <div className="container">
         <a href="#inicio" className="logo" onClick={cerrar_menu_enlace}>
+          <img className="logo-mark" src="/img/isotipo.webp" alt="" width="30" height="30" />
           rafaelrivero<span>dev</span>
         </a>
 

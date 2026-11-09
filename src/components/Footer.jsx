@@ -10,7 +10,7 @@ export const Footer = () => {
       <div className="container">
         <div className="footer-grid">
           <div>
-            <a href="#inicio" className="logo">rafaelrivero<span>dev</span></a>
+            <a href="#inicio" className="logo"><img className="logo-mark" src="/img/isotipo.webp" alt="" width="30" height="30" />rafaelrivero<span>dev</span></a>
             <p>Diseño web para negocios locales.</p>
           </div>
           <div>

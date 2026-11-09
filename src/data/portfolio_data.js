@@ -25,15 +25,15 @@ export const trabajos_portafolio = [
     enlace_demo: "https://demo-tatuajes-two.vercel.app"
   },
   {
-    id_trabajo: "trabajo_resto",
-    clase_sector: "work--resto",
-    sector: "Restaurante",
-    nombre_negocio: "Trattoria Lume",
-    dominio_ejemplo: "trattoria-lume.es",
-    titular_captura: ["Cocina casera", "desde 1998"],
-    boton_captura: "Reservar mesa",
-    frase_resultado: "Carta digital y reservas online para llenar mesas entre semana sin depender del teléfono.",
-    enlace_demo: null
+    id_trabajo: "trabajo_cafeteria",
+    clase_sector: "work--cafeteria",
+    sector: "Cafetería",
+    nombre_negocio: "Grano de Café",
+    dominio_ejemplo: "demo-cafeteria-teal.vercel.app",
+    imagen_captura: "/img/demo_cafeteria.webp",
+    es_demo: true,
+    frase_resultado: "Web para cafetería con la carta y sus precios, galería, horario y botón de WhatsApp.",
+    enlace_demo: "https://demo-cafeteria-teal.vercel.app"
   },
   {
     id_trabajo: "trabajo_carne",

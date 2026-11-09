@@ -102,8 +102,9 @@ section { scroll-margin-top: var(--header-h); }
   border-bottom: 1px solid var(--line);
 }
 .header .container { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.logo { font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; text-decoration: none; letter-spacing: -0.02em; }
+.logo { display: inline-flex; align-items: center; font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; text-decoration: none; letter-spacing: -0.02em; }
 .logo span { color: var(--accent); }
+.logo-mark { display: block; flex: none; width: 30px; height: 30px; margin-right: 8px; }
 
 .menu-toggle {
   display: inline-flex;
@@ -154,6 +155,10 @@ section { scroll-margin-top: var(--header-h); }
   .nav .btn { margin: 0 0 0 8px; min-height: 42px; padding: 10px 20px; }
   .nav .btn:hover { background: var(--ink); }
 }
+/* tramo justo de ancho: enlaces mas juntos para que la barra quepa en una linea */
+@media (min-width: 900px) and (max-width: 959px) {
+  .nav a { padding-inline: 8px; }
+}
 
 /* ==========================================================================
    hero
@@ -203,7 +208,11 @@ section { scroll-margin-top: var(--header-h); }
    portafolio
    ========================================================================== */
 .portfolio-grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
-@media (min-width: 900px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; } }
+@media (min-width: 900px) {
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  /* si el numero de tarjetas es impar, la ultima queda centrada */
+  .portfolio-grid .work:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 14px); }
+}
 
 .work {
   background: var(--card-bg);
@@ -254,6 +263,7 @@ section { scroll-margin-top: var(--header-h); }
 
 .work--barberia { --card-bg: #efe2c8; --card-ink: #2a1e0c; }
 .work--tatuajes { --card-bg: #e2f2a6; --card-ink: #161616; }
+.work--cafeteria { --card-bg: #dde3d0; --card-ink: #1f2a1a; }
 
 /* texto solo para lectores de pantalla */
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
@@ -431,7 +441,7 @@ section { scroll-margin-top: var(--header-h); }
    ========================================================================== */
 .footer { background: var(--dark); color: #c9ccd3; padding-block: 56px 100px; font-size: .95rem; }
 .footer-grid { display: grid; gap: 32px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); margin-bottom: 40px; }
-.footer .logo { color: #fff; display: inline-block; margin-bottom: 10px; }
+.footer .logo { color: #fff; margin-bottom: 10px; }
 .footer h2 { color: #fff; font-family: var(--font-body); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 12px; }
 .footer address { font-style: normal; display: flex; flex-direction: column; gap: 6px; }
 .footer a { text-decoration: none; }
