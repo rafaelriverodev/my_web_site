@@ -39,12 +39,12 @@ export const trabajos_portafolio = [
     id_trabajo: "trabajo_carne",
     clase_sector: "work--carne",
     sector: "Carnicería",
-    nombre_negocio: "Carnicería El Roble",
-    dominio_ejemplo: "carniceria-elroble.es",
-    titular_captura: ["Carne de calidad,", "de aquí"],
-    boton_captura: "Haz tu pedido",
-    frase_resultado: "Pedidos por WhatsApp con un clic y ofertas de la semana visibles desde el móvil.",
-    enlace_demo: null
+    nombre_negocio: "El Buen Corte",
+    dominio_ejemplo: "demo-carniceria-six.vercel.app",
+    imagen_captura: "/img/demo_carniceria.webp",
+    es_demo: true,
+    frase_resultado: "Web para carnicería con la carta de cortes, galería, horario y pedidos por WhatsApp.",
+    enlace_demo: "https://demo-carniceria-six.vercel.app"
   },
   {
     id_trabajo: "trabajo_pelu",
