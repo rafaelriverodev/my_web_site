@@ -271,7 +271,8 @@ section { scroll-margin-top: var(--header-h); }
 .work--resto { --card-bg: #f6e3cf; --card-ink: #3a1d0e; --s-bg: #fff8ef; --s-ink: #3a1d0e; --s-accent: #b4441b; --s-btn-ink: #fff; --s-img: linear-gradient(135deg, #e08a3c, #8c2f12); }
 .work--carne { --card-bg: #f4d5d5; --card-ink: #3d0b10; --s-bg: #2a0a0e; --s-ink: #fbe9e9; --s-accent: #e8b44c; --s-btn-ink: #2a0a0e; --s-img: linear-gradient(135deg, #c0392b, #5c0f17); }
 .work--pelu { --card-bg: #ead9f2; --card-ink: #2f1440; --s-bg: #fdf6ff; --s-ink: #2f1440; --s-accent: #c2185b; --s-btn-ink: #fff; --s-img: linear-gradient(135deg, #f48fb1, #7e57c2); }
-.work--reformas { --card-bg: #f7e58a; --card-ink: #1f1d14; --s-bg: #1f1f1f; --s-ink: #f5f5f0; --s-accent: #ffd400; --s-btn-ink: #1f1f1f; --s-img: linear-gradient(135deg, #ffd400, #8a7a2e); }
+/* inmobiliaria: beige y terracota, los mismos tonos cálidos que usa la demo de Atrio */
+.work--inmobiliaria { --card-bg: #f3e0d2; --card-ink: #3a1e12; }
 
 /* ==========================================================================
    como trabajo

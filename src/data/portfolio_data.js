@@ -58,15 +58,15 @@ export const trabajos_portafolio = [
     enlace_demo: null
   },
   {
-    id_trabajo: "trabajo_reformas",
-    clase_sector: "work--reformas",
-    sector: "Reformas",
-    nombre_negocio: "Reformas Norte",
-    dominio_ejemplo: "reformas-norte.es",
-    titular_captura: ["Reformas sin", "sorpresas"],
-    boton_captura: "Pide presupuesto",
-    frase_resultado: "Fotos de antes y después y un formulario de presupuesto que filtra los encargos serios.",
-    enlace_demo: null
+    id_trabajo: "trabajo_inmobiliaria",
+    clase_sector: "work--inmobiliaria",
+    sector: "Inmobiliaria",
+    nombre_negocio: "Atrio Inmobiliaria",
+    dominio_ejemplo: "demo-inmobiliaria-black.vercel.app",
+    imagen_captura: "/img/demo_inmobiliaria.webp",
+    es_demo: true,
+    frase_resultado: "Web para inmobiliaria con catálogo de viviendas, calculadora de hipoteca y valoración gratuita.",
+    enlace_demo: "https://demo-inmobiliaria-black.vercel.app"
   }
 ];
 
