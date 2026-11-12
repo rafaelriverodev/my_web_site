@@ -17,10 +17,13 @@ export default defineConfig({
   build: {
     rollupOptions: {
       // portada en react y paginas secundarias estaticas
-      // pendientes de publicar: aviso-legal.html, politica-privacidad.html y politica-cookies.html
+      // incluye las tres paginas legales enlazadas desde el pie y el formulario
       input: {
         portada: resolve(carpeta_raiz, 'index.html'),
-        proyectos: resolve(carpeta_raiz, 'proyectos.html')
+        proyectos: resolve(carpeta_raiz, 'proyectos.html'),
+        aviso_legal: resolve(carpeta_raiz, 'aviso-legal.html'),
+        politica_privacidad: resolve(carpeta_raiz, 'politica-privacidad.html'),
+        politica_cookies: resolve(carpeta_raiz, 'politica-cookies.html')
       }
     }
   },

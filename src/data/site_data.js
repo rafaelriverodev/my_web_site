@@ -11,9 +11,9 @@ export const datos_contacto = {
   horario_atencion: "De 9:00 a 17:00"
 };
 
-// las paginas legales estan pendientes de revision: al publicarlas, poner true y
-// añadirlas de nuevo a build.rollupOptions.input en vite.config.js
-export const paginas_legales_publicadas = false;
+// paginas legales publicadas el 12 de noviembre de 2026; si se retiran, poner false y
+// quitarlas de build.rollupOptions.input en vite.config.js
+export const paginas_legales_publicadas = true;
 
 // enlace directo al chat de whatsapp con el mensaje inicial ya escrito
 export const enlace_whatsapp = `https://wa.me/${datos_contacto.numero_whatsapp}?text=${encodeURIComponent(datos_contacto.mensaje_whatsapp)}`;
