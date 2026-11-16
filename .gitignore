@@ -7,3 +7,7 @@ dist
 
 .vercel
 .env*
+
+# Notas de Rafael dictadas a Orion (no se suben a GitHub)
+NOTAS_PENDIENTES.md
+NOTAS_HISTORIAL.md
