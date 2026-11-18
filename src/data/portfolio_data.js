@@ -97,7 +97,7 @@ export const planes_precios = [
     id_plan: "plan_basica",
     nombre_plan: "Básica",
     descripcion_plan: "Para empezar a tener presencia en internet.",
-    precio_plan: 200,
+    precio_plan: 250,
     nota_impuestos: "Impuestos no incluidos",
     cuota_anual: 60,
     cambios_incluidos: 3,
